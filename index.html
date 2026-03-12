@@ -1,275 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Smart Tools Hub</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Tools Hub - Free Online Tools</title>
+
+<meta name="description" content="Smart Tools Hub - Free online tools like Age Calculator, BMI Calculator, EMI Calculator, Image tools, PDF tools and many utilities.">
 
 <style>
-
 body{
-font-family:Arial;
+font-family: Arial, sans-serif;
+background:#f4f4f4;
 margin:0;
-background:#f2f2f2;
-text-align:center;
+padding:0;
 }
 
 header{
 background:#222;
 color:white;
+text-align:center;
 padding:20px;
-font-size:26px;
 }
 
-.container{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
+.tools{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+padding:20px;
 }
 
-.box{
+.tool{
 background:white;
-width:300px;
-margin:15px;
-padding:20px;
+padding:15px;
 border-radius:8px;
-box-shadow:0 0 10px rgba(0,0,0,0.2);
+text-align:center;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
 }
 
-input{
-width:90%;
-padding:8px;
-margin:5px;
+.tool a{
+text-decoration:none;
+color:#333;
+font-weight:bold;
 }
 
-button{
-padding:8px 15px;
-cursor:pointer;
+.tool:hover{
+background:#e8f0ff;
 }
 
 footer{
+text-align:center;
+padding:15px;
 background:#222;
 color:white;
-padding:20px;
-margin-top:40px;
 }
-
 </style>
-</head>
 
+</head>
 <body>
 
-<header>Smart Tools Hub</header>
+<header>
+<h1>Smart Tools Hub</h1>
+<p>Free Online Calculators & Utility Tools</p>
+</header>
 
-<div class="container">
+<div class="tools">
 
-<!-- AGE -->
-<div class="box">
-<h3>Age Calculator</h3>
-<input type="date" id="dob">
-<button onclick="age()">Calculate</button>
-<p id="ageResult"></p>
-</div>
+<div class="tool"><a href="#">Age Calculator</a></div>
+<div class="tool"><a href="#">BMI Calculator</a></div>
+<div class="tool"><a href="#">EMI Calculator</a></div>
+<div class="tool"><a href="#">Loan Calculator</a></div>
+<div class="tool"><a href="#">SIP Calculator</a></div>
+<div class="tool"><a href="#">GST Calculator</a></div>
+<div class="tool"><a href="#">Discount Calculator</a></div>
+<div class="tool"><a href="#">Profit Calculator</a></div>
+<div class="tool"><a href="#">Percentage Calculator</a></div>
+<div class="tool"><a href="#">Simple Interest</a></div>
 
-<!-- BMI -->
-<div class="box">
-<h3>BMI Calculator</h3>
-<input type="number" id="w" placeholder="Weight kg">
-<input type="number" id="h" placeholder="Height cm">
-<button onclick="bmi()">Calculate</button>
-<p id="bmiResult"></p>
-</div>
+<div class="tool"><a href="#">Compound Interest</a></div>
+<div class="tool"><a href="#">Average Calculator</a></div>
+<div class="tool"><a href="#">Ratio Calculator</a></div>
+<div class="tool"><a href="#">Scientific Calculator</a></div>
+<div class="tool"><a href="#">Password Generator</a></div>
+<div class="tool"><a href="#">Random Number Generator</a></div>
+<div class="tool"><a href="#">QR Code Generator</a></div>
+<div class="tool"><a href="#">Barcode Generator</a></div>
+<div class="tool"><a href="#">Word Counter</a></div>
+<div class="tool"><a href="#">Character Counter</a></div>
 
-<!-- EMI -->
-<div class="box">
-<h3>EMI Calculator</h3>
-<input type="number" id="loan" placeholder="Loan">
-<input type="number" id="rate" placeholder="Interest %">
-<input type="number" id="months" placeholder="Months">
-<button onclick="emi()">Calculate</button>
-<p id="emiResult"></p>
-</div>
+<div class="tool"><a href="#">Text Case Converter</a></div>
+<div class="tool"><a href="#">Remove Duplicate Lines</a></div>
+<div class="tool"><a href="#">Text to Speech</a></div>
+<div class="tool"><a href="#">Image to PDF</a></div>
+<div class="tool"><a href="#">PDF to Image</a></div>
+<div class="tool"><a href="#">PDF Merger</a></div>
+<div class="tool"><a href="#">PDF Splitter</a></div>
+<div class="tool"><a href="#">Compress PDF</a></div>
+<div class="tool"><a href="#">Image Compressor</a></div>
+<div class="tool"><a href="#">Image Resizer</a></div>
 
-<!-- Percentage -->
-<div class="box">
-<h3>Percentage Calculator</h3>
-<input type="number" id="p1">
-<input type="number" id="p2">
-<button onclick="percent()">Calculate</button>
-<p id="percentResult"></p>
-</div>
+<div class="tool"><a href="#">Image Cropper</a></div>
+<div class="tool"><a href="#">JPG to PNG</a></div>
+<div class="tool"><a href="#">PNG to JPG</a></div>
+<div class="tool"><a href="#">URL Encoder</a></div>
+<div class="tool"><a href="#">URL Decoder</a></div>
+<div class="tool"><a href="#">Base64 Encoder</a></div>
+<div class="tool"><a href="#">Base64 Decoder</a></div>
+<div class="tool"><a href="#">JSON Formatter</a></div>
+<div class="tool"><a href="#">Unit Converter</a></div>
+<div class="tool"><a href="#">Currency Converter</a></div>
 
-<!-- Discount -->
-<div class="box">
-<h3>Discount Calculator</h3>
-<input type="number" id="price">
-<input type="number" id="disc">
-<button onclick="discount()">Calculate</button>
-<p id="discResult"></p>
-</div>
-
-<!-- Profit -->
-<div class="box">
-<h3>Profit Calculator</h3>
-<input type="number" id="cost">
-<input type="number" id="sell">
-<button onclick="profit()">Calculate</button>
-<p id="profitResult"></p>
-</div>
-
-<!-- GST -->
-<div class="box">
-<h3>GST Calculator</h3>
-<input type="number" id="gstAmt">
-<input type="number" id="gstRate">
-<button onclick="gst()">Calculate</button>
-<p id="gstResult"></p>
-</div>
-
-<!-- SIMPLE INTEREST -->
-<div class="box">
-<h3>Simple Interest</h3>
-<input type="number" id="siP">
-<input type="number" id="siR">
-<input type="number" id="siT">
-<button onclick="si()">Calculate</button>
-<p id="siResult"></p>
-</div>
-
-<!-- COMPOUND INTEREST -->
-<div class="box">
-<h3>Compound Interest</h3>
-<input type="number" id="ciP">
-<input type="number" id="ciR">
-<input type="number" id="ciT">
-<button onclick="ci()">Calculate</button>
-<p id="ciResult"></p>
-</div>
-
-<!-- DAYS BETWEEN -->
-<div class="box">
-<h3>Days Between Dates</h3>
-<input type="date" id="d1">
-<input type="date" id="d2">
-<button onclick="days()">Calculate</button>
-<p id="daysResult"></p>
-</div>
-
-<!-- RANDOM NUMBER -->
-<div class="box">
-<h3>Random Number</h3>
-<input type="number" id="min">
-<input type="number" id="max">
-<button onclick="random()">Generate</button>
-<p id="randResult"></p>
-</div>
-
-<!-- PASSWORD -->
-<div class="box">
-<h3>Password Generator</h3>
-<button onclick="password()">Generate</button>
-<p id="passResult"></p>
-</div>
+<div class="tool"><a href="#">Binary Converter</a></div>
+<div class="tool"><a href="#">Random Name Generator</a></div>
+<div class="tool"><a href="#">YouTube Thumbnail Downloader</a></div>
+<div class="tool"><a href="#">Instagram Photo Downloader</a></div>
+<div class="tool"><a href="#">Facebook Video Downloader</a></div>
+<div class="tool"><a href="#">Twitter Video Downloader</a></div>
+<div class="tool"><a href="#">TikTok Video Downloader</a></div>
+<div class="tool"><a href="#">Time Zone Converter</a></div>
 
 </div>
 
 <footer>
-© Smart Tools Hub
+<p>© 2026 Smart Tools Hub</p>
 </footer>
-
-<script>
-
-function age(){
-let dob=new Date(document.getElementById("dob").value);
-let today=new Date();
-let age=today.getFullYear()-dob.getFullYear();
-document.getElementById("ageResult").innerHTML="Age: "+age;
-}
-
-function bmi(){
-let w=document.getElementById("w").value;
-let h=document.getElementById("h").value/100;
-let r=w/(h*h);
-document.getElementById("bmiResult").innerHTML="BMI: "+r.toFixed(2);
-}
-
-function emi(){
-let P=document.getElementById("loan").value;
-let r=document.getElementById("rate").value/12/100;
-let n=document.getElementById("months").value;
-let emi=P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
-document.getElementById("emiResult").innerHTML="EMI: "+emi.toFixed(2);
-}
-
-function percent(){
-let a=document.getElementById("p1").value;
-let b=document.getElementById("p2").value;
-let r=(a/b)*100;
-document.getElementById("percentResult").innerHTML=r.toFixed(2)+"%";
-}
-
-function discount(){
-let p=document.getElementById("price").value;
-let d=document.getElementById("disc").value;
-let r=p-(p*d/100);
-document.getElementById("discResult").innerHTML="Final Price: "+r;
-}
-
-function profit(){
-let c=document.getElementById("cost").value;
-let s=document.getElementById("sell").value;
-let r=s-c;
-document.getElementById("profitResult").innerHTML="Profit: "+r;
-}
-
-function gst(){
-let a=document.getElementById("gstAmt").value;
-let g=document.getElementById("gstRate").value;
-let r=a*(1+g/100);
-document.getElementById("gstResult").innerHTML="Total: "+r;
-}
-
-function si(){
-let p=document.getElementById("siP").value;
-let r=document.getElementById("siR").value;
-let t=document.getElementById("siT").value;
-let result=(p*r*t)/100;
-document.getElementById("siResult").innerHTML="Interest: "+result;
-}
-
-function ci(){
-let p=document.getElementById("ciP").value;
-let r=document.getElementById("ciR").value/100;
-let t=document.getElementById("ciT").value;
-let result=p*Math.pow((1+r),t);
-document.getElementById("ciResult").innerHTML="Total: "+result.toFixed(2);
-}
-
-function days(){
-let d1=new Date(document.getElementById("d1").value);
-let d2=new Date(document.getElementById("d2").value);
-let diff=Math.abs(d2-d1);
-let days=diff/(1000*60*60*24);
-document.getElementById("daysResult").innerHTML="Days: "+days;
-}
-
-function random(){
-let min=document.getElementById("min").value;
-let max=document.getElementById("max").value;
-let r=Math.floor(Math.random()*(max-min+1))+parseInt(min);
-document.getElementById("randResult").innerHTML=r;
-}
-
-function password(){
-let chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-let pass="";
-for(let i=0;i<10;i++){
-pass+=chars.charAt(Math.floor(Math.random()*chars.length));
-}
-document.getElementById("passResult").innerHTML=pass;
-}
-
-</script>
 
 </body>
 </html>
