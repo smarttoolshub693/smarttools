@@ -2,24 +2,30 @@
 <html>
 <head>
 <title>Smart Tools Hub</title>
+
 <style>
+
 body{
 font-family:Arial;
 text-align:center;
 background:#f2f2f2;
 }
+
 .box{
 background:white;
 padding:20px;
 margin:20px auto;
-width:300px;
+width:320px;
 border-radius:10px;
 box-shadow:0 0 10px gray;
 }
+
 button{
 padding:8px 15px;
 }
+
 </style>
+
 </head>
 
 <body>
@@ -27,24 +33,127 @@ padding:8px 15px;
 <h1>Smart Tools Hub</h1>
 
 <div class="box">
+
 <h3>Age Calculator</h3>
+
 <input type="date" id="dob">
+
 <br><br>
+
 <button onclick="age()">Calculate Age</button>
-<p id="result"></p>
+
+<p id="ageResult"></p>
+
 </div>
+
+
+<div class="box">
+
+<h3>BMI Calculator</h3>
+
+<input type="number" id="weight" placeholder="Weight (kg)">
+
+<br><br>
+
+<input type="number" id="height" placeholder="Height (cm)">
+
+<br><br>
+
+<button onclick="bmi()">Calculate BMI</button>
+
+<p id="bmiResult"></p>
+
+</div>
+
+
+<div class="box">
+
+<h3>EMI Calculator</h3>
+
+<input type="number" id="loan" placeholder="Loan Amount">
+
+<br><br>
+
+<input type="number" id="rate" placeholder="Interest Rate (%)">
+
+<br><br>
+
+<input type="number" id="months" placeholder="Months">
+
+<br><br>
+
+<button onclick="emi()">Calculate EMI</button>
+
+<p id="emiResult"></p>
+
+</div>
+
+
+<div class="box">
+
+<h3>Percentage Calculator</h3>
+
+<input type="number" id="part" placeholder="Part Value">
+
+<br><br>
+
+<input type="number" id="total" placeholder="Total Value">
+
+<br><br>
+
+<button onclick="percent()">Calculate</button>
+
+<p id="percentResult"></p>
+
+</div>
+
 
 <script>
 
 function age(){
 
 let dob=new Date(document.getElementById("dob").value);
-
 let today=new Date();
-
 let age=today.getFullYear()-dob.getFullYear();
 
-document.getElementById("result").innerHTML="Your Age: "+age;
+document.getElementById("ageResult").innerHTML="Age: "+age;
+
+}
+
+
+function bmi(){
+
+let w=document.getElementById("weight").value;
+let h=document.getElementById("height").value/100;
+
+let result=w/(h*h);
+
+document.getElementById("bmiResult").innerHTML="BMI: "+result.toFixed(2);
+
+}
+
+
+function emi(){
+
+let P=document.getElementById("loan").value;
+let r=document.getElementById("rate").value/12/100;
+let n=document.getElementById("months").value;
+
+let emi=P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+
+document.getElementById("emiResult").innerHTML="Monthly EMI: "+emi.toFixed(2);
+
+}
+
+
+function percent(){
+
+let part=document.getElementById("part").value;
+let total=document.getElementById("total").value;
+
+let result=(part/total)*100;
+
+document.getElementById("percentResult").innerHTML="Percentage: "+result.toFixed(2)+"%";
 
 }
 
