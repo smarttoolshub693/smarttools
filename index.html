@@ -4,7 +4,6 @@
 <title>Smart Tools Hub</title>
 
 <style>
-
 body{
 font-family:Arial;
 text-align:center;
@@ -15,16 +14,14 @@ background:#f2f2f2;
 background:white;
 padding:20px;
 margin:20px auto;
-width:330px;
+width:320px;
 border-radius:10px;
 box-shadow:0 0 10px gray;
 }
 
 button{
 padding:8px 15px;
-margin-top:5px;
 }
-
 </style>
 
 </head>
@@ -33,318 +30,115 @@ margin-top:5px;
 
 <h1>Smart Tools Hub</h1>
 
-
+<!-- AGE -->
 <div class="box">
-
 <h3>Age Calculator</h3>
-
 <input type="date" id="dob">
-
 <br><br>
-
 <button onclick="age()">Calculate Age</button>
-
 <p id="ageResult"></p>
-
 </div>
 
-
-
+<!-- BMI -->
 <div class="box">
-
 <h3>BMI Calculator</h3>
-
-<input type="number" id="weight" placeholder="Weight (kg)">
-
+<input type="number" id="weight" placeholder="Weight kg">
 <br><br>
-
-<input type="number" id="height" placeholder="Height (cm)">
-
+<input type="number" id="height" placeholder="Height cm">
 <br><br>
-
 <button onclick="bmi()">Calculate BMI</button>
-
 <p id="bmiResult"></p>
-
 </div>
 
-
-
+<!-- EMI -->
 <div class="box">
-
 <h3>EMI Calculator</h3>
-
 <input type="number" id="loan" placeholder="Loan Amount">
-
 <br><br>
-
-<input type="number" id="rate" placeholder="Interest Rate (%)">
-
+<input type="number" id="rate" placeholder="Interest %">
 <br><br>
-
 <input type="number" id="months" placeholder="Months">
-
 <br><br>
-
 <button onclick="emi()">Calculate EMI</button>
-
 <p id="emiResult"></p>
-
 </div>
 
-
-
+<!-- PERCENTAGE -->
 <div class="box">
-
 <h3>Percentage Calculator</h3>
-
-<input type="number" id="part" placeholder="Part Value">
-
+<input type="number" id="part" placeholder="Part">
 <br><br>
-
-<input type="number" id="total" placeholder="Total Value">
-
+<input type="number" id="total" placeholder="Total">
 <br><br>
-
 <button onclick="percent()">Calculate</button>
-
 <p id="percentResult"></p>
-
 </div>
 
-
-
+<!-- DISCOUNT -->
 <div class="box">
-
 <h3>Discount Calculator</h3>
-
-<input type="number" id="price" placeholder="Original Price">
-
+<input type="number" id="price" placeholder="Price">
 <br><br>
-
 <input type="number" id="discount" placeholder="Discount %">
-
 <br><br>
-
 <button onclick="disc()">Calculate</button>
-
 <p id="discResult"></p>
-
 </div>
 
-
-
+<!-- PROFIT -->
 <div class="box">
-
-<h3>GST Calculator</h3>
-
-<input type="number" id="gstPrice" placeholder="Amount">
-
+<h3>Profit Calculator</h3>
+<input type="number" id="cost" placeholder="Cost Price">
 <br><br>
-
-<input type="number" id="gstRate" placeholder="GST %">
-
+<input type="number" id="sell" placeholder="Selling Price">
 <br><br>
-
-<button onclick="gst()">Calculate GST</button>
-
-<p id="gstResult"></p>
-
+<button onclick="profit()">Calculate</button>
+<p id="profitResult"></p>
 </div>
-
-
-
-<div class="box">
-
-<h3>Simple Interest Calculator</h3>
-
-<input type="number" id="p" placeholder="Principal">
-
-<br><br>
-
-<input type="number" id="r" placeholder="Rate %">
-
-<br><br>
-
-<input type="number" id="t" placeholder="Years">
-
-<br><br>
-
-<button onclick="si()">Calculate</button>
-
-<p id="siResult"></p>
-
-</div>
-
-
-
-<div class="box">
-
-<h3>Square Calculator</h3>
-
-<input type="number" id="sq">
-
-<br><br>
-
-<button onclick="square()">Calculate</button>
-
-<p id="sqResult"></p>
-
-</div>
-
-
-
-<div class="box">
-
-<h3>Cube Calculator</h3>
-
-<input type="number" id="cube">
-
-<br><br>
-
-<button onclick="cubeCalc()">Calculate</button>
-
-<p id="cubeResult"></p>
-
-</div>
-
-
-
-<div class="box">
-
-<h3>Tip Calculator</h3>
-
-<input type="number" id="bill" placeholder="Bill Amount">
-
-<br><br>
-
-<input type="number" id="tip" placeholder="Tip %">
-
-<br><br>
-
-<button onclick="tipCalc()">Calculate</button>
-
-<p id="tipResult"></p>
-
-</div>
-
-
 
 <script>
 
 function age(){
-
 let dob=new Date(document.getElementById("dob").value);
 let today=new Date();
-
 let age=today.getFullYear()-dob.getFullYear();
-
 document.getElementById("ageResult").innerHTML="Age: "+age;
-
 }
-
 
 function bmi(){
-
 let w=document.getElementById("weight").value;
 let h=document.getElementById("height").value/100;
-
 let result=w/(h*h);
-
 document.getElementById("bmiResult").innerHTML="BMI: "+result.toFixed(2);
-
 }
 
-
 function emi(){
-
 let P=document.getElementById("loan").value;
 let r=document.getElementById("rate").value/12/100;
 let n=document.getElementById("months").value;
-
 let emi=P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
-
 document.getElementById("emiResult").innerHTML="EMI: "+emi.toFixed(2);
-
 }
-
 
 function percent(){
-
 let part=document.getElementById("part").value;
 let total=document.getElementById("total").value;
-
 let result=(part/total)*100;
-
-document.getElementById("percentResult").innerHTML=result.toFixed(2)+"%";
-
+document.getElementById("percentResult").innerHTML="Percentage: "+result.toFixed(2)+"%";
 }
-
 
 function disc(){
-
-let p=document.getElementById("price").value;
-let d=document.getElementById("discount").value;
-
-let result=p-(p*d/100);
-
+let price=document.getElementById("price").value;
+let dis=document.getElementById("discount").value;
+let result=price-(price*dis/100);
 document.getElementById("discResult").innerHTML="Final Price: "+result;
-
 }
 
-
-function gst(){
-
-let p=document.getElementById("gstPrice").value;
-let g=document.getElementById("gstRate").value;
-
-let result=p*(g/100);
-
-document.getElementById("gstResult").innerHTML="GST Amount: "+result;
-
-}
-
-
-function si(){
-
-let p=document.getElementById("p").value;
-let r=document.getElementById("r").value;
-let t=document.getElementById("t").value;
-
-let si=(p*r*t)/100;
-
-document.getElementById("siResult").innerHTML="Interest: "+si;
-
-}
-
-
-function square(){
-
-let n=document.getElementById("sq").value;
-
-document.getElementById("sqResult").innerHTML="Square: "+(n*n);
-
-}
-
-
-function cubeCalc(){
-
-let n=document.getElementById("cube").value;
-
-document.getElementById("cubeResult").innerHTML="Cube: "+(n*n*n);
-
-}
-
-
-function tipCalc(){
-
-let bill=document.getElementById("bill").value;
-let tip=document.getElementById("tip").value;
-
-let result=bill*(tip/100);
-
-document.getElementById("tipResult").innerHTML="Tip Amount: "+result;
-
+function profit(){
+let cost=document.getElementById("cost").value;
+let sell=document.getElementById("sell").value;
+let result=sell-cost;
+document.getElementById("profitResult").innerHTML="Profit: "+result;
 }
 
 </script>
