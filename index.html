@@ -15,13 +15,14 @@ background:#f2f2f2;
 background:white;
 padding:20px;
 margin:20px auto;
-width:320px;
+width:330px;
 border-radius:10px;
 box-shadow:0 0 10px gray;
 }
 
 button{
 padding:8px 15px;
+margin-top:5px;
 }
 
 </style>
@@ -31,6 +32,7 @@ padding:8px 15px;
 <body>
 
 <h1>Smart Tools Hub</h1>
+
 
 <div class="box">
 
@@ -45,6 +47,7 @@ padding:8px 15px;
 <p id="ageResult"></p>
 
 </div>
+
 
 
 <div class="box">
@@ -64,6 +67,7 @@ padding:8px 15px;
 <p id="bmiResult"></p>
 
 </div>
+
 
 
 <div class="box">
@@ -89,6 +93,7 @@ padding:8px 15px;
 </div>
 
 
+
 <div class="box">
 
 <h3>Percentage Calculator</h3>
@@ -108,12 +113,130 @@ padding:8px 15px;
 </div>
 
 
+
+<div class="box">
+
+<h3>Discount Calculator</h3>
+
+<input type="number" id="price" placeholder="Original Price">
+
+<br><br>
+
+<input type="number" id="discount" placeholder="Discount %">
+
+<br><br>
+
+<button onclick="disc()">Calculate</button>
+
+<p id="discResult"></p>
+
+</div>
+
+
+
+<div class="box">
+
+<h3>GST Calculator</h3>
+
+<input type="number" id="gstPrice" placeholder="Amount">
+
+<br><br>
+
+<input type="number" id="gstRate" placeholder="GST %">
+
+<br><br>
+
+<button onclick="gst()">Calculate GST</button>
+
+<p id="gstResult"></p>
+
+</div>
+
+
+
+<div class="box">
+
+<h3>Simple Interest Calculator</h3>
+
+<input type="number" id="p" placeholder="Principal">
+
+<br><br>
+
+<input type="number" id="r" placeholder="Rate %">
+
+<br><br>
+
+<input type="number" id="t" placeholder="Years">
+
+<br><br>
+
+<button onclick="si()">Calculate</button>
+
+<p id="siResult"></p>
+
+</div>
+
+
+
+<div class="box">
+
+<h3>Square Calculator</h3>
+
+<input type="number" id="sq">
+
+<br><br>
+
+<button onclick="square()">Calculate</button>
+
+<p id="sqResult"></p>
+
+</div>
+
+
+
+<div class="box">
+
+<h3>Cube Calculator</h3>
+
+<input type="number" id="cube">
+
+<br><br>
+
+<button onclick="cubeCalc()">Calculate</button>
+
+<p id="cubeResult"></p>
+
+</div>
+
+
+
+<div class="box">
+
+<h3>Tip Calculator</h3>
+
+<input type="number" id="bill" placeholder="Bill Amount">
+
+<br><br>
+
+<input type="number" id="tip" placeholder="Tip %">
+
+<br><br>
+
+<button onclick="tipCalc()">Calculate</button>
+
+<p id="tipResult"></p>
+
+</div>
+
+
+
 <script>
 
 function age(){
 
 let dob=new Date(document.getElementById("dob").value);
 let today=new Date();
+
 let age=today.getFullYear()-dob.getFullYear();
 
 document.getElementById("ageResult").innerHTML="Age: "+age;
@@ -141,7 +264,7 @@ let n=document.getElementById("months").value;
 
 let emi=P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
 
-document.getElementById("emiResult").innerHTML="Monthly EMI: "+emi.toFixed(2);
+document.getElementById("emiResult").innerHTML="EMI: "+emi.toFixed(2);
 
 }
 
@@ -153,7 +276,74 @@ let total=document.getElementById("total").value;
 
 let result=(part/total)*100;
 
-document.getElementById("percentResult").innerHTML="Percentage: "+result.toFixed(2)+"%";
+document.getElementById("percentResult").innerHTML=result.toFixed(2)+"%";
+
+}
+
+
+function disc(){
+
+let p=document.getElementById("price").value;
+let d=document.getElementById("discount").value;
+
+let result=p-(p*d/100);
+
+document.getElementById("discResult").innerHTML="Final Price: "+result;
+
+}
+
+
+function gst(){
+
+let p=document.getElementById("gstPrice").value;
+let g=document.getElementById("gstRate").value;
+
+let result=p*(g/100);
+
+document.getElementById("gstResult").innerHTML="GST Amount: "+result;
+
+}
+
+
+function si(){
+
+let p=document.getElementById("p").value;
+let r=document.getElementById("r").value;
+let t=document.getElementById("t").value;
+
+let si=(p*r*t)/100;
+
+document.getElementById("siResult").innerHTML="Interest: "+si;
+
+}
+
+
+function square(){
+
+let n=document.getElementById("sq").value;
+
+document.getElementById("sqResult").innerHTML="Square: "+(n*n);
+
+}
+
+
+function cubeCalc(){
+
+let n=document.getElementById("cube").value;
+
+document.getElementById("cubeResult").innerHTML="Cube: "+(n*n*n);
+
+}
+
+
+function tipCalc(){
+
+let bill=document.getElementById("bill").value;
+let tip=document.getElementById("tip").value;
+
+let result=bill*(tip/100);
+
+document.getElementById("tipResult").innerHTML="Tip Amount: "+result;
 
 }
 
