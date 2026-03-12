@@ -1,100 +1,181 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>Smart Tools Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
+
 body{
 font-family:Arial;
-text-align:center;
+margin:0;
 background:#f2f2f2;
+text-align:center;
+}
+
+header{
+background:#222;
+color:white;
+padding:20px;
+font-size:26px;
+}
+
+.container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
 }
 
 .box{
 background:white;
+width:300px;
+margin:15px;
 padding:20px;
-margin:20px auto;
-width:320px;
-border-radius:10px;
-box-shadow:0 0 10px gray;
+border-radius:8px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+input{
+width:90%;
+padding:8px;
+margin:5px;
 }
 
 button{
 padding:8px 15px;
+cursor:pointer;
 }
-</style>
 
+footer{
+background:#222;
+color:white;
+padding:20px;
+margin-top:40px;
+}
+
+</style>
 </head>
 
 <body>
 
-<h1>Smart Tools Hub</h1>
+<header>Smart Tools Hub</header>
+
+<div class="container">
 
 <!-- AGE -->
 <div class="box">
 <h3>Age Calculator</h3>
 <input type="date" id="dob">
-<br><br>
-<button onclick="age()">Calculate Age</button>
+<button onclick="age()">Calculate</button>
 <p id="ageResult"></p>
 </div>
 
 <!-- BMI -->
 <div class="box">
 <h3>BMI Calculator</h3>
-<input type="number" id="weight" placeholder="Weight kg">
-<br><br>
-<input type="number" id="height" placeholder="Height cm">
-<br><br>
-<button onclick="bmi()">Calculate BMI</button>
+<input type="number" id="w" placeholder="Weight kg">
+<input type="number" id="h" placeholder="Height cm">
+<button onclick="bmi()">Calculate</button>
 <p id="bmiResult"></p>
 </div>
 
 <!-- EMI -->
 <div class="box">
 <h3>EMI Calculator</h3>
-<input type="number" id="loan" placeholder="Loan Amount">
-<br><br>
+<input type="number" id="loan" placeholder="Loan">
 <input type="number" id="rate" placeholder="Interest %">
-<br><br>
 <input type="number" id="months" placeholder="Months">
-<br><br>
-<button onclick="emi()">Calculate EMI</button>
+<button onclick="emi()">Calculate</button>
 <p id="emiResult"></p>
 </div>
 
-<!-- PERCENTAGE -->
+<!-- Percentage -->
 <div class="box">
 <h3>Percentage Calculator</h3>
-<input type="number" id="part" placeholder="Part">
-<br><br>
-<input type="number" id="total" placeholder="Total">
-<br><br>
+<input type="number" id="p1">
+<input type="number" id="p2">
 <button onclick="percent()">Calculate</button>
 <p id="percentResult"></p>
 </div>
 
-<!-- DISCOUNT -->
+<!-- Discount -->
 <div class="box">
 <h3>Discount Calculator</h3>
-<input type="number" id="price" placeholder="Price">
-<br><br>
-<input type="number" id="discount" placeholder="Discount %">
-<br><br>
-<button onclick="disc()">Calculate</button>
+<input type="number" id="price">
+<input type="number" id="disc">
+<button onclick="discount()">Calculate</button>
 <p id="discResult"></p>
 </div>
 
-<!-- PROFIT -->
+<!-- Profit -->
 <div class="box">
 <h3>Profit Calculator</h3>
-<input type="number" id="cost" placeholder="Cost Price">
-<br><br>
-<input type="number" id="sell" placeholder="Selling Price">
-<br><br>
+<input type="number" id="cost">
+<input type="number" id="sell">
 <button onclick="profit()">Calculate</button>
 <p id="profitResult"></p>
 </div>
+
+<!-- GST -->
+<div class="box">
+<h3>GST Calculator</h3>
+<input type="number" id="gstAmt">
+<input type="number" id="gstRate">
+<button onclick="gst()">Calculate</button>
+<p id="gstResult"></p>
+</div>
+
+<!-- SIMPLE INTEREST -->
+<div class="box">
+<h3>Simple Interest</h3>
+<input type="number" id="siP">
+<input type="number" id="siR">
+<input type="number" id="siT">
+<button onclick="si()">Calculate</button>
+<p id="siResult"></p>
+</div>
+
+<!-- COMPOUND INTEREST -->
+<div class="box">
+<h3>Compound Interest</h3>
+<input type="number" id="ciP">
+<input type="number" id="ciR">
+<input type="number" id="ciT">
+<button onclick="ci()">Calculate</button>
+<p id="ciResult"></p>
+</div>
+
+<!-- DAYS BETWEEN -->
+<div class="box">
+<h3>Days Between Dates</h3>
+<input type="date" id="d1">
+<input type="date" id="d2">
+<button onclick="days()">Calculate</button>
+<p id="daysResult"></p>
+</div>
+
+<!-- RANDOM NUMBER -->
+<div class="box">
+<h3>Random Number</h3>
+<input type="number" id="min">
+<input type="number" id="max">
+<button onclick="random()">Generate</button>
+<p id="randResult"></p>
+</div>
+
+<!-- PASSWORD -->
+<div class="box">
+<h3>Password Generator</h3>
+<button onclick="password()">Generate</button>
+<p id="passResult"></p>
+</div>
+
+</div>
+
+<footer>
+© Smart Tools Hub
+</footer>
 
 <script>
 
@@ -106,10 +187,10 @@ document.getElementById("ageResult").innerHTML="Age: "+age;
 }
 
 function bmi(){
-let w=document.getElementById("weight").value;
-let h=document.getElementById("height").value/100;
-let result=w/(h*h);
-document.getElementById("bmiResult").innerHTML="BMI: "+result.toFixed(2);
+let w=document.getElementById("w").value;
+let h=document.getElementById("h").value/100;
+let r=w/(h*h);
+document.getElementById("bmiResult").innerHTML="BMI: "+r.toFixed(2);
 }
 
 function emi(){
@@ -121,24 +202,71 @@ document.getElementById("emiResult").innerHTML="EMI: "+emi.toFixed(2);
 }
 
 function percent(){
-let part=document.getElementById("part").value;
-let total=document.getElementById("total").value;
-let result=(part/total)*100;
-document.getElementById("percentResult").innerHTML="Percentage: "+result.toFixed(2)+"%";
+let a=document.getElementById("p1").value;
+let b=document.getElementById("p2").value;
+let r=(a/b)*100;
+document.getElementById("percentResult").innerHTML=r.toFixed(2)+"%";
 }
 
-function disc(){
-let price=document.getElementById("price").value;
-let dis=document.getElementById("discount").value;
-let result=price-(price*dis/100);
-document.getElementById("discResult").innerHTML="Final Price: "+result;
+function discount(){
+let p=document.getElementById("price").value;
+let d=document.getElementById("disc").value;
+let r=p-(p*d/100);
+document.getElementById("discResult").innerHTML="Final Price: "+r;
 }
 
 function profit(){
-let cost=document.getElementById("cost").value;
-let sell=document.getElementById("sell").value;
-let result=sell-cost;
-document.getElementById("profitResult").innerHTML="Profit: "+result;
+let c=document.getElementById("cost").value;
+let s=document.getElementById("sell").value;
+let r=s-c;
+document.getElementById("profitResult").innerHTML="Profit: "+r;
+}
+
+function gst(){
+let a=document.getElementById("gstAmt").value;
+let g=document.getElementById("gstRate").value;
+let r=a*(1+g/100);
+document.getElementById("gstResult").innerHTML="Total: "+r;
+}
+
+function si(){
+let p=document.getElementById("siP").value;
+let r=document.getElementById("siR").value;
+let t=document.getElementById("siT").value;
+let result=(p*r*t)/100;
+document.getElementById("siResult").innerHTML="Interest: "+result;
+}
+
+function ci(){
+let p=document.getElementById("ciP").value;
+let r=document.getElementById("ciR").value/100;
+let t=document.getElementById("ciT").value;
+let result=p*Math.pow((1+r),t);
+document.getElementById("ciResult").innerHTML="Total: "+result.toFixed(2);
+}
+
+function days(){
+let d1=new Date(document.getElementById("d1").value);
+let d2=new Date(document.getElementById("d2").value);
+let diff=Math.abs(d2-d1);
+let days=diff/(1000*60*60*24);
+document.getElementById("daysResult").innerHTML="Days: "+days;
+}
+
+function random(){
+let min=document.getElementById("min").value;
+let max=document.getElementById("max").value;
+let r=Math.floor(Math.random()*(max-min+1))+parseInt(min);
+document.getElementById("randResult").innerHTML=r;
+}
+
+function password(){
+let chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+let pass="";
+for(let i=0;i<10;i++){
+pass+=chars.charAt(Math.floor(Math.random()*chars.length));
+}
+document.getElementById("passResult").innerHTML=pass;
 }
 
 </script>
