@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Age Calculator</title>
+<style>
+body{font-family:Arial;text-align:center;background:#f4f4f4;padding:40px;}
+.box{background:white;padding:20px;border-radius:10px;display:inline-block;}
+input,button{padding:10px;margin:10px;}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>Age Calculator</h2>
+
+<input type="date" id="dob">
+<br>
+
+<button onclick="age()">Calculate</button>
+
+<p id="result"></p>
+</div>
+
+<script>
+function age(){
+let dob=document.getElementById("dob").value;
+let birth=new Date(dob);
+let today=new Date();
+
+let age=today.getFullYear()-birth.getFullYear();
+
+document.getElementById("result").innerHTML="Age: "+age;
+}
+</script>
+
+</body>
+</html>
