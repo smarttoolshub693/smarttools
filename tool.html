@@ -19,7 +19,7 @@ padding:30px;
 border-radius:10px;
 display:inline-block;
 box-shadow:0 2px 10px rgba(0,0,0,0.1);
-max-width:450px;
+max-width:420px;
 }
 
 input,textarea,button{
@@ -61,61 +61,399 @@ cursor:pointer;
 let params=new URLSearchParams(window.location.search);
 let tool=params.get("name");
 
-document.getElementById("title").innerText=tool;
-
 let toolcontent=document.getElementById("toolcontent");
 let result=document.getElementById("result");
 
-/* GENERIC TOOL UI */
+document.getElementById("title").innerText=tool;
+
+/* EMI */
+
+if(tool=="EMI Calculator"){
+
+toolcontent.innerHTML=`
+<input id="loan" placeholder="Loan Amount">
+<input id="rate" placeholder="Interest %">
+<input id="months" placeholder="Months">
+<button onclick="emi()">Calculate</button>
+`;
+
+}
+
+/* Percentage */
+
+else if(tool=="Percentage Calculator"){
+
+toolcontent.innerHTML=`
+<input id="value" placeholder="Value">
+<input id="percent" placeholder="Percent">
+<button onclick="percent()">Calculate</button>
+`;
+
+}
+
+/* Discount */
+
+else if(tool=="Discount Calculator"){
+
+toolcontent.innerHTML=`
+<input id="price" placeholder="Price">
+<input id="disc" placeholder="Discount %">
+<button onclick="discount()">Calculate</button>
+`;
+
+}
+
+/* Profit */
+
+else if(tool=="Profit Calculator"){
+
+toolcontent.innerHTML=`
+<input id="cost" placeholder="Cost Price">
+<input id="sell" placeholder="Selling Price">
+<button onclick="profit()">Calculate</button>
+`;
+
+}
+
+/* Random Number */
+
+else if(tool=="Random Number Generator"){
+
+toolcontent.innerHTML=`
+<button onclick="randomNumber()">Generate</button>
+`;
+
+}
+
+/* Password Generator */
+
+else if(tool=="Password Generator"){
+
+toolcontent.innerHTML=`
+<button onclick="password()">Generate Password</button>
+`;
+
+}
+
+/* Word Counter */
+
+else if(tool=="Word Counter"){
+
+toolcontent.innerHTML=`
+<textarea id="text"></textarea>
+<button onclick="words()">Count Words</button>
+`;
+
+}
+
+/* Character Counter */
+
+else if(tool=="Character Counter"){
+
+toolcontent.innerHTML=`
+<textarea id="text"></textarea>
+<button onclick="chars()">Count Characters</button>
+`;
+
+}
+
+/* Random Name */
+
+else if(tool=="Random Name Generator"){
+
+toolcontent.innerHTML=`
+<button onclick="nameGen()">Generate Name</button>
+`;
+
+}
+
+/* Unit Converter */
+
+else if(tool=="Unit Converter"){
+
+toolcontent.innerHTML=`
+<input id="kmval" placeholder="Kilometers">
+<button onclick="convertKm()">Convert to Miles</button>
+`;
+
+}
+
+/* Currency */
+
+else if(tool=="Currency Converter"){
+
+toolcontent.innerHTML=`
+<input id="rupees" placeholder="Rupees">
+<button onclick="usd()">Convert to USD</button>
+`;
+
+}
+
+/* JSON Formatter */
+
+else if(tool=="JSON Formatter"){
+
+toolcontent.innerHTML=`
+<textarea id="json"></textarea>
+<button onclick="formatJSON()">Format</button>
+`;
+
+}
+
+/* Base64 Encoder */
+
+else if(tool=="Base64 Encoder"){
+
+toolcontent.innerHTML=`
+<input id="text">
+<button onclick="encode()">Encode</button>
+`;
+
+}
+
+/* Base64 Decoder */
+
+else if(tool=="Base64 Decoder"){
+
+toolcontent.innerHTML=`
+<input id="text">
+<button onclick="decode()">Decode</button>
+`;
+
+}
+
+/* Binary Converter */
+
+else if(tool=="Binary Converter"){
+
+toolcontent.innerHTML=`
+<input id="num">
+<button onclick="binary()">Convert</button>
+`;
+
+}
+
+/* JPG to PNG */
+
+else if(tool=="JPG to PNG"){
 
 toolcontent.innerHTML=`
 
-<input id="input1" placeholder="Enter value">
+<input type="file" id="imgfile">
 
-<input id="input2" placeholder="Enter second value (optional)">
+<button onclick="convertImage()">Convert to PNG</button>
 
-<button onclick="calculate()">Calculate</button>
+<br><br>
+
+<a id="download"></a>
+
+<canvas id="canvas" style="display:none"></canvas>
 
 `;
 
-/* UNIVERSAL FUNCTION */
+}
 
-function calculate(){
+else{
 
-let a=parseFloat(input1.value) || 0;
-let b=parseFloat(input2.value) || 0;
+toolcontent.innerHTML="<p>This tool will be added soon.</p>";
 
-let output;
+}
 
-/* SMART DETECTION */
+/* FUNCTIONS */
 
-if(tool.includes("Percentage"))
-output=(a*b)/100;
+function emi(){
 
-else if(tool.includes("Discount"))
-output=a-(a*b/100);
+let P=loan.value;
+let r=rate.value/12/100;
+let n=months.value;
 
-else if(tool.includes("Profit"))
-output=b-a;
+let emi=(P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
 
-else if(tool.includes("Interest"))
-output=(a*b)/100;
+result.innerHTML="EMI: "+emi.toFixed(2);
 
-else if(tool.includes("Random"))
-output=Math.floor(Math.random()*100);
+}
 
-else if(tool.includes("Binary"))
-output=parseInt(a).toString(2);
+function percent(){
 
-else if(tool.includes("Currency"))
-output=(a/83).toFixed(2)+" USD";
+result.innerHTML=(value.value*percent.value)/100;
 
-else
-output=a+b;
+}
 
-/* SHOW RESULT */
+function discount(){
 
-result.innerText="Result: "+output;
+let d=price.value-(price.value*disc.value/100);
+
+result.innerHTML="Final Price: "+d;
+
+}
+
+function profit(){
+
+result.innerHTML=sell.value-cost.value;
+
+}
+
+function randomNumber(){
+
+result.innerHTML=Math.floor(Math.random()*100);
+
+}
+
+function password(){
+
+result.innerHTML=Math.random().toString(36).slice(-8);
+
+}
+
+function words(){
+
+result.innerHTML=text.value.split(" ").length;
+
+}
+
+function chars(){
+
+result.innerHTML=text.value.length;
+
+}
+
+function nameGen(){
+
+let names=["Rahul","Mahesh","Arjun","Ravi","Kiran","Suresh","Ramesh"];
+
+result.innerHTML=names[Math.floor(Math.random()*names.length)];
+
+}
+
+function convertKm(){
+
+result.innerHTML=(kmval.value*0.621371)+" Miles";
+
+}
+
+function usd(){
+
+result.innerHTML=(rupees.value/83).toFixed(2)+" USD";
+
+}
+
+function formatJSON(){
+
+try{
+
+result.innerHTML=JSON.stringify(JSON.parse(json.value),null,2);
+
+}
+
+catch{
+
+result.innerHTML="Invalid JSON";
+
+}
+
+}
+
+function encode(){
+
+result.innerHTML=btoa(text.value);
+
+}
+
+function decode(){
+
+result.innerHTML=atob(text.value);
+
+}
+
+function binary(){
+
+result.innerHTML=parseInt(num.value).toString(2);
+
+}
+
+function convertImage(){
+
+let file=document.getElementById("imgfile").files[0];
+
+if(!file){
+
+result.innerHTML="Upload JPG image";
+
+return;
+
+}
+
+let reader=new FileReader();
+
+reader.onload=function(e){
+
+let img=new Image();
+
+img.onload=function(){
+
+let canvas=document.getElementById("canvas");
+
+let ctx=canvas.getContext("2d");
+
+canvas.width=img.width;
+
+canvas.height=img.height;
+
+ctx.drawImage(img,0,0);
+
+let png=canvas.toDataURL("image/png");
+
+let link=document.getElementById("download");
+
+link.href=png;
+
+link.download="image.png";
+
+link.innerHTML="Download PNG";
+
+};
+
+img.src=e.target.result;
+
+};
+
+reader.readAsDataURL(file);<!DOCTYPE html>
+<html>
+<head>
+
+<title>Smart Tool</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+text-align:center;
+padding:40px;
+}
+
+.box{
+background:white;
+padding:30px;
+border-radius:10px;
+display:inline-block;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+max-width:450px;
+}
+
+input,textarea,button{
+padding:10px;
+margin:10px;
+width:85%;
+}
+
+button{
+background:#007bff;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+
 
 }
 
