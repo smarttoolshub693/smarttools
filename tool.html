@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Tool</title>
+
+<title>Smart Tool</title>
 
 <style>
 
@@ -14,15 +15,17 @@ padding:40px;
 
 .box{
 background:white;
-padding:25px;
+padding:30px;
 border-radius:10px;
 display:inline-block;
 box-shadow:0 2px 10px rgba(0,0,0,0.1);
+max-width:400px;
 }
 
-input,button{
+input,textarea,button{
 padding:10px;
 margin:10px;
+width:80%;
 }
 
 button{
@@ -45,69 +48,306 @@ cursor:pointer;
 
 <div id="toolcontent"></div>
 
+<p id="result"></p>
+
 <br>
 
-<a href="index.html">⬅ Back to Home</a>
+<a href="index.html">⬅ Back</a>
 
 </div>
 
 <script>
 
-let params = new URLSearchParams(window.location.search);
-let tool = params.get("name");
+let params=new URLSearchParams(window.location.search);
+let tool=params.get("name");
 
-document.getElementById("title").innerHTML = tool;
+let toolcontent=document.getElementById("toolcontent");
+let result=document.getElementById("result");
+
+document.getElementById("title").innerHTML=tool;
+
+/* EMI */
 
 if(tool=="EMI Calculator"){
 
-document.getElementById("toolcontent").innerHTML = `
-<input type="number" id="loan" placeholder="Loan Amount"><br>
-<input type="number" id="rate" placeholder="Interest Rate %"><br>
-<input type="number" id="months" placeholder="Months"><br>
+toolcontent.innerHTML=`
+<input id="loan" placeholder="Loan Amount">
+<input id="rate" placeholder="Interest %">
+<input id="months" placeholder="Months">
 <button onclick="emi()">Calculate</button>
-<p id="result"></p>
 `;
 
 }
 
+/* Percentage */
+
 else if(tool=="Percentage Calculator"){
 
-document.getElementById("toolcontent").innerHTML = `
-<input type="number" id="value" placeholder="Value"><br>
-<input type="number" id="percent" placeholder="Percent"><br>
+toolcontent.innerHTML=`
+<input id="value" placeholder="Value">
+<input id="percent" placeholder="Percent">
 <button onclick="percent()">Calculate</button>
-<p id="result"></p>
+`;
+
+}
+
+/* Discount */
+
+else if(tool=="Discount Calculator"){
+
+toolcontent.innerHTML=`
+<input id="price" placeholder="Price">
+<input id="disc" placeholder="Discount %">
+<button onclick="discount()">Calculate</button>
+`;
+
+}
+
+/* Profit */
+
+else if(tool=="Profit Calculator"){
+
+toolcontent.innerHTML=`
+<input id="cost" placeholder="Cost Price">
+<input id="sell" placeholder="Selling Price">
+<button onclick="profit()">Calculate</button>
+`;
+
+}
+
+/* Random Number */
+
+else if(tool=="Random Number Generator"){
+
+toolcontent.innerHTML=`
+<button onclick="randomNumber()">Generate</button>
+`;
+
+}
+
+/* Password */
+
+else if(tool=="Password Generator"){
+
+toolcontent.innerHTML=`
+<button onclick="password()">Generate Password</button>
+`;
+
+}
+
+/* Word Counter */
+
+else if(tool=="Word Counter"){
+
+toolcontent.innerHTML=`
+<textarea id="text"></textarea>
+<button onclick="words()">Count Words</button>
+`;
+
+}
+
+/* Character Counter */
+
+else if(tool=="Character Counter"){
+
+toolcontent.innerHTML=`
+<textarea id="text"></textarea>
+<button onclick="chars()">Count Characters</button>
+`;
+
+}
+
+/* Random Name */
+
+else if(tool=="Random Name Generator"){
+
+toolcontent.innerHTML=`
+<button onclick="nameGen()">Generate Name</button>
+`;
+
+}
+
+/* Unit Converter */
+
+else if(tool=="Unit Converter"){
+
+toolcontent.innerHTML=`
+<input id="kmval" placeholder="Kilometers">
+<button onclick="convertKm()">Convert to Miles</button>
+`;
+
+}
+
+/* Currency */
+
+else if(tool=="Currency Converter"){
+
+toolcontent.innerHTML=`
+<input id="rupees" placeholder="Rupees">
+<button onclick="usd()">Convert to USD</button>
+`;
+
+}
+
+/* JSON */
+
+else if(tool=="JSON Formatter"){
+
+toolcontent.innerHTML=`
+<textarea id="json"></textarea>
+<button onclick="formatJSON()">Format</button>
+`;
+
+}
+
+/* Base64 Encoder */
+
+else if(tool=="Base64 Encoder"){
+
+toolcontent.innerHTML=`
+<input id="text">
+<button onclick="encode()">Encode</button>
+`;
+
+}
+
+/* Base64 Decoder */
+
+else if(tool=="Base64 Decoder"){
+
+toolcontent.innerHTML=`
+<input id="text">
+<button onclick="decode()">Decode</button>
+`;
+
+}
+
+/* Binary */
+
+else if(tool=="Binary Converter"){
+
+toolcontent.innerHTML=`
+<input id="num">
+<button onclick="binary()">Convert</button>
 `;
 
 }
 
 else{
 
-document.getElementById("toolcontent").innerHTML =
-"<p>This tool will be available soon.</p>";
+toolcontent.innerHTML="<p>Tool ready soon</p>";
 
 }
 
+/* FUNCTIONS */
+
 function emi(){
 
-let P=document.getElementById("loan").value;
-let r=document.getElementById("rate").value/12/100;
-let n=document.getElementById("months").value;
+let P=loan.value;
+let r=rate.value/12/100;
+let n=months.value;
 
 let emi=(P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
 
-document.getElementById("result").innerHTML="Monthly EMI: "+emi.toFixed(2);
+result.innerHTML="EMI: "+emi.toFixed(2);
 
 }
 
 function percent(){
 
-let v=document.getElementById("value").value;
-let p=document.getElementById("percent").value;
+result.innerHTML=(value.value*percent.value)/100;
 
-let result=(v*p)/100;
+}
 
-document.getElementById("result").innerHTML="Result: "+result;
+function discount(){
+
+let d=price.value-(price.value*disc.value/100);
+
+result.innerHTML="Final Price: "+d;
+
+}
+
+function profit(){
+
+result.innerHTML=sell.value-cost.value;
+
+}
+
+function randomNumber(){
+
+result.innerHTML=Math.floor(Math.random()*100);
+
+}
+
+function password(){
+
+result.innerHTML=Math.random().toString(36).slice(-8);
+
+}
+
+function words(){
+
+result.innerHTML=text.value.split(" ").length;
+
+}
+
+function chars(){
+
+result.innerHTML=text.value.length;
+
+}
+
+function nameGen(){
+
+let names=["Rahul","Mahesh","Arjun","Ravi","Kiran","Suresh","Ramesh"];
+
+result.innerHTML=names[Math.floor(Math.random()*names.length)];
+
+}
+
+function convertKm(){
+
+result.innerHTML=(kmval.value*0.621371)+" Miles";
+
+}
+
+function usd(){
+
+result.innerHTML=(rupees.value/83).toFixed(2)+" USD";
+
+}
+
+function formatJSON(){
+
+try{
+
+result.innerHTML=JSON.stringify(JSON.parse(json.value),null,2);
+
+}
+
+catch{
+
+result.innerHTML="Invalid JSON";
+
+}
+
+}
+
+function encode(){
+
+result.innerHTML=btoa(text.value);
+
+}
+
+function decode(){
+
+result.innerHTML=atob(text.value);
+
+}
+
+function binary(){
+
+result.innerHTML=parseInt(num.value).toString(2);
 
 }
 
