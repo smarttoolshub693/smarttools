@@ -14,10 +14,23 @@ padding:40px;
 
 .box{
 background:white;
-padding:30px;
+padding:25px;
 border-radius:10px;
 display:inline-block;
 box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+input,button{
+padding:10px;
+margin:10px;
+}
+
+button{
+background:#007bff;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
 }
 
 </style>
@@ -28,9 +41,11 @@ box-shadow:0 2px 10px rgba(0,0,0,0.1);
 
 <div class="box">
 
-<h2 id="toolname"></h2>
+<h2 id="title"></h2>
 
-<p>This tool will be available soon.</p>
+<div id="toolcontent"></div>
+
+<br>
 
 <a href="index.html">⬅ Back to Home</a>
 
@@ -41,7 +56,60 @@ box-shadow:0 2px 10px rgba(0,0,0,0.1);
 let params = new URLSearchParams(window.location.search);
 let tool = params.get("name");
 
-document.getElementById("toolname").innerHTML = tool;
+document.getElementById("title").innerHTML = tool;
+
+if(tool=="EMI Calculator"){
+
+document.getElementById("toolcontent").innerHTML = `
+<input type="number" id="loan" placeholder="Loan Amount"><br>
+<input type="number" id="rate" placeholder="Interest Rate %"><br>
+<input type="number" id="months" placeholder="Months"><br>
+<button onclick="emi()">Calculate</button>
+<p id="result"></p>
+`;
+
+}
+
+else if(tool=="Percentage Calculator"){
+
+document.getElementById("toolcontent").innerHTML = `
+<input type="number" id="value" placeholder="Value"><br>
+<input type="number" id="percent" placeholder="Percent"><br>
+<button onclick="percent()">Calculate</button>
+<p id="result"></p>
+`;
+
+}
+
+else{
+
+document.getElementById("toolcontent").innerHTML =
+"<p>This tool will be available soon.</p>";
+
+}
+
+function emi(){
+
+let P=document.getElementById("loan").value;
+let r=document.getElementById("rate").value/12/100;
+let n=document.getElementById("months").value;
+
+let emi=(P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+
+document.getElementById("result").innerHTML="Monthly EMI: "+emi.toFixed(2);
+
+}
+
+function percent(){
+
+let v=document.getElementById("value").value;
+let p=document.getElementById("percent").value;
+
+let result=(v*p)/100;
+
+document.getElementById("result").innerHTML="Result: "+result;
+
+}
 
 </script>
 
