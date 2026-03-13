@@ -1,3 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart Tools Hub</title>
+
+<meta name="description" content="Free online tools like calculators, converters, PDF tools and utilities.">
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+margin:0;
+}
+
+header{
+background:#222;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.search{
+text-align:center;
+margin:20px;
+}
+
+.tools{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+padding:20px;
+}
+
+.tool{
+background:white;
+padding:15px;
+border-radius:8px;
+text-align:center;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tool a{
+text-decoration:none;
+color:#333;
+font-weight:bold;
+}
+
+.tool:hover{
+background:#e8f0ff;
+}
+
+footer{
+text-align:center;
+padding:15px;
+background:#222;
+color:white;
+}
+
+.ads{
+text-align:center;
+margin:20px;
+padding:20px;
+background:#fff;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Smart Tools Hub</h1>
+
+<p>Free Online Calculators & Utility Tools</p>
+
+</header>
+
+<div class="search">
+
+<input type="text" id="search" placeholder="Search tools..." onkeyup="searchTools()" style="padding:10px;width:300px;">
+
+</div>
+
+<div class="ads">
+
+Ad Space
+
+</div>
+
 <div class="tools">
 
 <div class="tool"><a href="age-calculator.html">Age Calculator</a></div>
@@ -26,9 +123,10 @@
 <div class="tool"><a href="tool.html?name=Word Counter">Word Counter</a></div>
 <div class="tool"><a href="tool.html?name=Character Counter">Character Counter</a></div>
 <div class="tool"><a href="tool.html?name=Text Case Converter">Text Case Converter</a></div>
-<div class="tool"><a href="tool.html?name=Remove Duplicate Lines">Remove Duplicate Lines</a></div>
 
+<div class="tool"><a href="tool.html?name=Remove Duplicate Lines">Remove Duplicate Lines</a></div>
 <div class="tool"><a href="tool.html?name=Text to Speech">Text to Speech</a></div>
+
 <div class="tool"><a href="tool.html?name=Image to PDF">Image to PDF</a></div>
 <div class="tool"><a href="tool.html?name=PDF to Image">PDF to Image</a></div>
 <div class="tool"><a href="tool.html?name=PDF Merger">PDF Merger</a></div>
@@ -56,3 +154,36 @@
 <div class="tool"><a href="tool.html?name=Random Name Generator">Random Name Generator</a></div>
 
 </div>
+
+<footer>
+
+<p>© 2026 Smart Tools Hub</p>
+
+</footer>
+
+<script>
+
+function searchTools(){
+
+let input=document.getElementById("search").value.toLowerCase();
+let tools=document.getElementsByClassName("tool");
+
+for(let i=0;i<tools.length;i++){
+
+let text=tools[i].innerText.toLowerCase();
+
+if(text.includes(input)){
+tools[i].style.display="block";
+}else{
+tools[i].style.display="none";
+}
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
