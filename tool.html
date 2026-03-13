@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tool</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+text-align:center;
+padding:40px;
+}
+
+.box{
+background:white;
+padding:30px;
+border-radius:10px;
+display:inline-block;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2 id="toolname"></h2>
+
+<p>This tool will be available soon.</p>
+
+<a href="index.html">⬅ Back to Home</a>
+
+</div>
+
+<script>
+
+let params = new URLSearchParams(window.location.search);
+let tool = params.get("name");
+
+document.getElementById("toolname").innerHTML = tool;
+
+</script>
+
+</body>
+</html>
