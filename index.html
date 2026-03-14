@@ -1,189 +1,187 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!DOCTYPE html><html>
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Smart Tools Hub</title>
-
-<meta name="description" content="Free online tools like calculators, converters, PDF tools and utilities.">
-
-<style>
+<title>Smart Tools Hub</title><style>
 
 body{
 font-family:Arial;
 background:#f4f4f4;
-margin:0;
-}
-
-header{
-background:#222;
-color:white;
 text-align:center;
 padding:20px;
 }
 
-.search{
-text-align:center;
-margin:20px;
+h1{
+color:#333;
 }
 
-.tools{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:15px;
-padding:20px;
+.container{
+max-width:800px;
+margin:auto;
 }
 
 .tool{
 background:white;
-padding:15px;
-border-radius:8px;
-text-align:center;
-box-shadow:0 2px 5px rgba(0,0,0,0.1);
-}
-
-.tool a{
-text-decoration:none;
-color:#333;
-font-weight:bold;
-}
-
-.tool:hover{
-background:#e8f0ff;
-}
-
-footer{
-text-align:center;
-padding:15px;
-background:#222;
-color:white;
-}
-
-.ads{
-text-align:center;
-margin:20px;
 padding:20px;
-background:#fff;
+margin:20px 0;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
-</style>
-
-</head>
-
-<body>
-
-<header>
-
-<h1>Smart Tools Hub</h1>
-
-<p>Free Online Calculators & Utility Tools</p>
-
-</header>
-
-<div class="search">
-
-<input type="text" id="search" placeholder="Search tools..." onkeyup="searchTools()" style="padding:10px;width:300px;">
-
-</div>
-
-<div class="ads">
-
-Ad Space
-
-</div>
-
-<div class="tools">
-
-<div class="tool"><a href="age-calculator.html">Age Calculator</a></div>
-<div class="tool"><a href="bmi-calculator.html">BMI Calculator</a></div>
-
-<div class="tool"><a href="tool.html?name=EMI Calculator">EMI Calculator</a></div>
-<div class="tool"><a href="tool.html?name=Loan Calculator">Loan Calculator</a></div>
-<div class="tool"><a href="tool.html?name=SIP Calculator">SIP Calculator</a></div>
-<div class="tool"><a href="tool.html?name=GST Calculator">GST Calculator</a></div>
-
-<div class="tool"><a href="tool.html?name=Discount Calculator">Discount Calculator</a></div>
-<div class="tool"><a href="tool.html?name=Profit Calculator">Profit Calculator</a></div>
-<div class="tool"><a href="tool.html?name=Percentage Calculator">Percentage Calculator</a></div>
-<div class="tool"><a href="tool.html?name=Simple Interest">Simple Interest</a></div>
-
-<div class="tool"><a href="tool.html?name=Compound Interest">Compound Interest</a></div>
-<div class="tool"><a href="tool.html?name=Average Calculator">Average Calculator</a></div>
-<div class="tool"><a href="tool.html?name=Ratio Calculator">Ratio Calculator</a></div>
-<div class="tool"><a href="tool.html?name=Scientific Calculator">Scientific Calculator</a></div>
-
-<div class="tool"><a href="tool.html?name=Password Generator">Password Generator</a></div>
-<div class="tool"><a href="tool.html?name=Random Number Generator">Random Number Generator</a></div>
-<div class="tool"><a href="tool.html?name=QR Code Generator">QR Code Generator</a></div>
-<div class="tool"><a href="tool.html?name=Barcode Generator">Barcode Generator</a></div>
-
-<div class="tool"><a href="tool.html?name=Word Counter">Word Counter</a></div>
-<div class="tool"><a href="tool.html?name=Character Counter">Character Counter</a></div>
-<div class="tool"><a href="tool.html?name=Text Case Converter">Text Case Converter</a></div>
-
-<div class="tool"><a href="tool.html?name=Remove Duplicate Lines">Remove Duplicate Lines</a></div>
-<div class="tool"><a href="tool.html?name=Text to Speech">Text to Speech</a></div>
-
-<div class="tool"><a href="tool.html?name=Image to PDF">Image to PDF</a></div>
-<div class="tool"><a href="tool.html?name=PDF to Image">PDF to Image</a></div>
-<div class="tool"><a href="tool.html?name=PDF Merger">PDF Merger</a></div>
-<div class="tool"><a href="tool.html?name=PDF Splitter">PDF Splitter</a></div>
-<div class="tool"><a href="tool.html?name=Compress PDF">Compress PDF</a></div>
-
-<div class="tool"><a href="tool.html?name=Image Compressor">Image Compressor</a></div>
-<div class="tool"><a href="tool.html?name=Image Resizer">Image Resizer</a></div>
-<div class="tool"><a href="tool.html?name=Image Cropper">Image Cropper</a></div>
-
-<div class="tool"><a href="tool.html?name=JPG to PNG">JPG to PNG</a></div>
-<div class="tool"><a href="tool.html?name=PNG to JPG">PNG to JPG</a></div>
-
-<div class="tool"><a href="tool.html?name=URL Encoder">URL Encoder</a></div>
-<div class="tool"><a href="tool.html?name=URL Decoder">URL Decoder</a></div>
-
-<div class="tool"><a href="tool.html?name=Base64 Encoder">Base64 Encoder</a></div>
-<div class="tool"><a href="tool.html?name=Base64 Decoder">Base64 Decoder</a></div>
-
-<div class="tool"><a href="tool.html?name=JSON Formatter">JSON Formatter</a></div>
-<div class="tool"><a href="tool.html?name=Unit Converter">Unit Converter</a></div>
-<div class="tool"><a href="tool.html?name=Currency Converter">Currency Converter</a></div>
-<div class="tool"><a href="tool.html?name=Binary Converter">Binary Converter</a></div>
-
-<div class="tool"><a href="tool.html?name=Random Name Generator">Random Name Generator</a></div>
-
-</div>
-
-<footer>
-
-<p>© 2026 Smart Tools Hub</p>
-
-</footer>
-
-<script>
-
-function searchTools(){
-
-let input=document.getElementById("search").value.toLowerCase();
-let tools=document.getElementsByClassName("tool");
-
-for(let i=0;i<tools.length;i++){
-
-let text=tools[i].innerText.toLowerCase();
-
-if(text.includes(input)){
-tools[i].style.display="block";
-}else{
-tools[i].style.display="none";
+input{
+padding:10px;
+margin:5px;
+width:150px;
 }
+
+button{
+padding:10px 15px;
+margin-top:10px;
+cursor:pointer;
+}
+
+</style></head><body><h1>Smart Tools Hub</h1><div class="container"><!-- AGE CALCULATOR --><div class="tool">
+<h2>Age Calculator</h2>
+<input type="date" id="dob">
+<br>
+<button onclick="ageCalc()">Calculate</button>
+<h3 id="ageResult"></h3>
+</div><!-- BMI CALCULATOR --><div class="tool">
+<h2>BMI Calculator</h2>
+<input id="weight" placeholder="Weight (kg)">
+<input id="height" placeholder="Height (meters)">
+<br>
+<button onclick="bmiCalc()">Calculate</button>
+<h3 id="bmiResult"></h3>
+</div><!-- PERCENTAGE CALCULATOR --><div class="tool">
+<h2>Percentage Calculator</h2>
+<input id="num" placeholder="Number">
+<input id="per" placeholder="Percentage">
+<br>
+<button onclick="perCalc()">Calculate</button>
+<h3 id="perResult"></h3>
+</div><!-- DISCOUNT CALCULATOR --><div class="tool">
+<h2>Discount Calculator</h2>
+<input id="price" placeholder="Original Price">
+<input id="discount" placeholder="Discount %">
+<br>
+<button onclick="discountCalc()">Calculate</button>
+<h3 id="discountResult"></h3>
+</div><!-- EMI CALCULATOR --><div class="tool">
+<h2>EMI Calculator</h2>
+<input id="loan" placeholder="Loan Amount">
+<input id="rate" placeholder="Interest %">
+<input id="months" placeholder="Months">
+<br>
+<button onclick="emiCalc()">Calculate</button>
+<h3 id="emiResult"></h3>
+</div><!-- GST CALCULATOR --><div class="tool">
+<h2>GST Calculator</h2>
+<input id="gstPrice" placeholder="Amount">
+<input id="gstRate" placeholder="GST %">
+<br>
+<button onclick="gstCalc()">Calculate</button>
+<h3 id="gstResult"></h3>
+</div></div><script>
+
+function ageCalc(){
+
+let dob=document.getElementById("dob").value;
+
+if(!dob){
+alert("Select date of birth");
+return;
+}
+
+let birth=new Date(dob);
+let today=new Date();
+
+let age=today.getFullYear()-birth.getFullYear();
+
+document.getElementById("ageResult").innerHTML="Age: "+age+" years";
 
 }
 
+function bmiCalc(){
+
+let w=parseFloat(document.getElementById("weight").value);
+let h=parseFloat(document.getElementById("height").value);
+
+if(!w || !h){
+alert("Enter weight and height");
+return;
 }
 
-</script>
+let bmi=w/(h*h);
 
-</body>
+document.getElementById("bmiResult").innerHTML="BMI: "+bmi.toFixed(2);
 
+}
+
+function perCalc(){
+
+let n=parseFloat(document.getElementById("num").value);
+let p=parseFloat(document.getElementById("per").value);
+
+if(!n || !p){
+alert("Enter values");
+return;
+}
+
+let r=(n*p)/100;
+
+document.getElementById("perResult").innerHTML="Result: "+r;
+
+}
+
+function discountCalc(){
+
+let price=parseFloat(document.getElementById("price").value);
+let dis=parseFloat(document.getElementById("discount").value);
+
+if(!price || !dis){
+alert("Enter values");
+return;
+}
+
+let final=price-(price*dis/100);
+
+document.getElementById("discountResult").innerHTML="Final Price: "+final;
+
+}
+
+function emiCalc(){
+
+let p=parseFloat(document.getElementById("loan").value);
+let r=parseFloat(document.getElementById("rate").value)/12/100;
+let n=parseFloat(document.getElementById("months").value);
+
+if(!p || !r || !n){
+alert("Enter values");
+return;
+}
+
+let emi=(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+
+document.getElementById("emiResult").innerHTML="Monthly EMI: "+Math.round(emi);
+
+}
+
+function gstCalc(){
+
+let price=parseFloat(document.getElementById("gstPrice").value);
+let rate=parseFloat(document.getElementById("gstRate").value);
+
+if(!price || !rate){
+alert("Enter values");
+return;
+}
+
+let gst=price*rate/100;
+let total=price+gst;
+
+document.getElementById("gstResult").innerHTML="Total Price: "+total;
+
+}
+
+</script></body>
 </html>
