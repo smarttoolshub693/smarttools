@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://smarttoolshub693.github.io/smarttools/sitemap.xml
