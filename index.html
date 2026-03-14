@@ -5,182 +5,146 @@
 
 body{
 font-family:Arial;
-background:#f4f4f4;
+background:#f2f2f2;
 text-align:center;
 padding:20px;
 }
 
 h1{
-color:#333;
+margin-bottom:30px;
 }
 
-.container{
-max-width:800px;
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+max-width:900px;
 margin:auto;
 }
 
 .tool{
 background:white;
 padding:20px;
-margin:20px 0;
 border-radius:10px;
 box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
 input{
-padding:10px;
+padding:8px;
 margin:5px;
-width:150px;
+width:120px;
 }
 
 button{
-padding:10px 15px;
-margin-top:10px;
+padding:8px 12px;
 cursor:pointer;
 }
 
-</style></head><body><h1>Smart Tools Hub</h1><div class="container"><!-- AGE CALCULATOR --><div class="tool">
-<h2>Age Calculator</h2>
-<input type="date" id="dob">
-<br>
-<button onclick="ageCalc()">Calculate</button>
-<h3 id="ageResult"></h3>
-</div><!-- BMI CALCULATOR --><div class="tool">
-<h2>BMI Calculator</h2>
-<input id="weight" placeholder="Weight (kg)">
-<input id="height" placeholder="Height (meters)">
-<br>
-<button onclick="bmiCalc()">Calculate</button>
-<h3 id="bmiResult"></h3>
-</div><!-- PERCENTAGE CALCULATOR --><div class="tool">
-<h2>Percentage Calculator</h2>
-<input id="num" placeholder="Number">
-<input id="per" placeholder="Percentage">
-<br>
-<button onclick="perCalc()">Calculate</button>
-<h3 id="perResult"></h3>
-</div><!-- DISCOUNT CALCULATOR --><div class="tool">
-<h2>Discount Calculator</h2>
-<input id="price" placeholder="Original Price">
-<input id="discount" placeholder="Discount %">
-<br>
-<button onclick="discountCalc()">Calculate</button>
-<h3 id="discountResult"></h3>
-</div><!-- EMI CALCULATOR --><div class="tool">
-<h2>EMI Calculator</h2>
-<input id="loan" placeholder="Loan Amount">
-<input id="rate" placeholder="Interest %">
-<input id="months" placeholder="Months">
-<br>
-<button onclick="emiCalc()">Calculate</button>
-<h3 id="emiResult"></h3>
-</div><!-- GST CALCULATOR --><div class="tool">
-<h2>GST Calculator</h2>
-<input id="gstPrice" placeholder="Amount">
-<input id="gstRate" placeholder="GST %">
-<br>
-<button onclick="gstCalc()">Calculate</button>
-<h3 id="gstResult"></h3>
-</div></div><script>
+</style></head><body><h1>Smart Tools Hub</h1><div class="grid" id="tools"></div><script>
 
-function ageCalc(){
+const tools=[
 
-let dob=document.getElementById("dob").value;
+{ name:"Age Calculator",
+html:`<input type="date" id="dob">
+<button onclick="age()">Calculate</button>
+<p id="ageRes"></p>` },
 
-if(!dob){
-alert("Select date of birth");
-return;
+{ name:"BMI Calculator",
+html:`<input id="w" placeholder="kg">
+<input id="h" placeholder="m">
+<button onclick="bmi()">Calc</button>
+<p id="bmiRes"></p>` },
+
+{ name:"Percentage Calculator",
+html:`<input id="num">
+<input id="per">
+<button onclick="percent()">Calc</button>
+<p id="perRes"></p>` },
+
+{ name:"Discount Calculator",
+html:`<input id="price">
+<input id="disc">
+<button onclick="discount()">Calc</button>
+<p id="discRes"></p>` },
+
+{ name:"GST Calculator",
+html:`<input id="gstPrice">
+<input id="gstRate">
+<button onclick="gst()">Calc</button>
+<p id="gstRes"></p>` },
+
+{ name:"Square Calculator",
+html:`<input id="sq">
+<button onclick="square()">Calc</button>
+<p id="sqRes"></p>` },
+
+{ name:"Cube Calculator",
+html:`<input id="cube">
+<button onclick="cube()">Calc</button>
+<p id="cubeRes"></p>` },
+
+{ name:"Average Calculator",
+html:`<input id="a1"><input id="a2"><input id="a3">
+<button onclick="avg()">Calc</button>
+<p id="avgRes"></p>` }
+
+];
+
+const container=document.getElementById("tools");
+
+tools.forEach(t=>{
+container.innerHTML+=`
+<div class="tool">
+<h3>${t.name}</h3>
+${t.html}
+</div>`;
+});
+
+function age(){
+let dob=new Date(document.getElementById("dob").value);
+let age=new Date().getFullYear()-dob.getFullYear();
+document.getElementById("ageRes").innerText="Age: "+age;
 }
 
-let birth=new Date(dob);
-let today=new Date();
-
-let age=today.getFullYear()-birth.getFullYear();
-
-document.getElementById("ageResult").innerHTML="Age: "+age+" years";
-
+function bmi(){
+let w=document.getElementById("w").value;
+let h=document.getElementById("h").value;
+document.getElementById("bmiRes").innerText="BMI: "+(w/(h*h)).toFixed(2);
 }
 
-function bmiCalc(){
-
-let w=parseFloat(document.getElementById("weight").value);
-let h=parseFloat(document.getElementById("height").value);
-
-if(!w || !h){
-alert("Enter weight and height");
-return;
+function percent(){
+let n=document.getElementById("num").value;
+let p=document.getElementById("per").value;
+document.getElementById("perRes").innerText=(n*p)/100;
 }
 
-let bmi=w/(h*h);
-
-document.getElementById("bmiResult").innerHTML="BMI: "+bmi.toFixed(2);
-
+function discount(){
+let price=document.getElementById("price").value;
+let d=document.getElementById("disc").value;
+document.getElementById("discRes").innerText=price-(price*d/100);
 }
 
-function perCalc(){
-
-let n=parseFloat(document.getElementById("num").value);
-let p=parseFloat(document.getElementById("per").value);
-
-if(!n || !p){
-alert("Enter values");
-return;
+function gst(){
+let p=document.getElementById("gstPrice").value;
+let r=document.getElementById("gstRate").value;
+document.getElementById("gstRes").innerText=parseFloat(p)+(p*r/100);
 }
 
-let r=(n*p)/100;
-
-document.getElementById("perResult").innerHTML="Result: "+r;
-
+function square(){
+let n=document.getElementById("sq").value;
+document.getElementById("sqRes").innerText=n*n;
 }
 
-function discountCalc(){
-
-let price=parseFloat(document.getElementById("price").value);
-let dis=parseFloat(document.getElementById("discount").value);
-
-if(!price || !dis){
-alert("Enter values");
-return;
+function cube(){
+let n=document.getElementById("cube").value;
+document.getElementById("cubeRes").innerText=n*n*n;
 }
 
-let final=price-(price*dis/100);
-
-document.getElementById("discountResult").innerHTML="Final Price: "+final;
-
-}
-
-function emiCalc(){
-
-let p=parseFloat(document.getElementById("loan").value);
-let r=parseFloat(document.getElementById("rate").value)/12/100;
-let n=parseFloat(document.getElementById("months").value);
-
-if(!p || !r || !n){
-alert("Enter values");
-return;
-}
-
-let emi=(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
-
-document.getElementById("emiResult").innerHTML="Monthly EMI: "+Math.round(emi);
-
-}
-
-function gstCalc(){
-
-let price=parseFloat(document.getElementById("gstPrice").value);
-let rate=parseFloat(document.getElementById("gstRate").value);
-
-if(!price || !rate){
-alert("Enter values");
-return;
-}
-
-let gst=price*rate/100;
-let total=price+gst;
-
-document.getElementById("gstResult").innerHTML="Total Price: "+total;
-
+function avg(){
+let a=parseFloat(a1.value);
+let b=parseFloat(a2.value);
+let c=parseFloat(a3.value);
+document.getElementById("avgRes").innerText=(a+b+c)/3;
 }
 
 </script></body>
